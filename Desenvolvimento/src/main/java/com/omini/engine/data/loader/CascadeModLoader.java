@@ -1,5 +1,6 @@
 package com.omini.engine.data.loader;
 
+import com.omini.engine.data.repositories.JsonAnatomyRepository;
 import com.omini.engine.data.repositories.JsonDamageTypeRepository;
 import com.omini.engine.data.repositories.JsonItemRepository;
 import com.omini.engine.data.repositories.JsonMaterialRepository;
@@ -20,11 +21,13 @@ public final class CascadeModLoader {
     private final JsonMaterialRepository materialRepository;
     private final JsonDamageTypeRepository damageTypeRepository;
     private final JsonItemRepository itemRepository;
+    private final JsonAnatomyRepository anatomyRepository;
 
     public CascadeModLoader(
         JsonMaterialRepository materialRepository,
         JsonDamageTypeRepository damageTypeRepository,
-        JsonItemRepository itemRepository
+        JsonItemRepository itemRepository,
+        JsonAnatomyRepository anatomyRepository
     ) {
         if (materialRepository == null || damageTypeRepository == null) {
             throw new IllegalArgumentException("Os repositórios de materiais e tipos de dano não podem ser nulos.");
@@ -32,13 +35,22 @@ public final class CascadeModLoader {
         this.materialRepository = materialRepository;
         this.damageTypeRepository = damageTypeRepository;
         this.itemRepository = itemRepository;
+        this.anatomyRepository = anatomyRepository;
+    }
+
+    public CascadeModLoader(
+        JsonMaterialRepository materialRepository,
+        JsonDamageTypeRepository damageTypeRepository,
+        JsonItemRepository itemRepository
+    ) {
+        this(materialRepository, damageTypeRepository, itemRepository, null);
     }
 
     public CascadeModLoader(
         JsonMaterialRepository materialRepository,
         JsonDamageTypeRepository damageTypeRepository
     ) {
-        this(materialRepository, damageTypeRepository, null);
+        this(materialRepository, damageTypeRepository, null, null);
     }
 
     /**
@@ -88,6 +100,13 @@ public final class CascadeModLoader {
             Path itemsSingleFile = dataPath.resolve("items.json");
             if (Files.exists(itemsSingleFile)) {
                 itemRepository.carregarDeArquivo(itemsSingleFile);
+            }
+        }
+
+        if (anatomyRepository != null) {
+            Path anatomyPath = dataPath.resolve("anatomy.json");
+            if (Files.exists(anatomyPath)) {
+                anatomyRepository.carregarDeArquivo(anatomyPath);
             }
         }
     }
