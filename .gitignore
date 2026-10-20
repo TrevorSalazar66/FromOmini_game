@@ -1,0 +1,32 @@
+# Gradle e Build
+.gradle/
+build/
+bin/
+out/
+target/
+
+# IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.settings/
+.project
+.classpath
+
+# Android
+*.apk
+*.aab
+*.ap_
+captures/
+.externalNativeBuild
+local.properties
+
+# Logs e arquivos temporários
+*.log
+.DS_Store
+Thumbs.db
+*.tmp
+.env
+.env.local

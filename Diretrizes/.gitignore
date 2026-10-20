@@ -1,0 +1,12 @@
+# Logs e arquivos temporários
+*.log
+node_modules/
+.DS_Store
+.env
+.env.local
+
+# Build e artefatos
+dist/
+build/
+.next/
+out/
