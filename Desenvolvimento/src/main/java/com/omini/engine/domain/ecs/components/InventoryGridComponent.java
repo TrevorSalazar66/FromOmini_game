@@ -113,6 +113,15 @@ public final class InventoryGridComponent implements Component {
         itensAlocados.put(instanceId, posItem);
     }
 
+    public void inserirItem(com.omini.engine.domain.ecs.Entity item, int gridX, int gridY, int larguraSlots, int alturaSlots) {
+        if (item == null) {
+            throw new IllegalArgumentException("O item não pode ser nulo.");
+        }
+        ItemComponent itemComp = item.getComponent(ItemComponent.class)
+                .orElse(new ItemComponent(item.getId(), item.getName(), larguraSlots, alturaSlots, 1.0, true));
+        registrarItem(new PositionedItemVO(item.getId(), itemComp, gridX, gridY, false));
+    }
+
     /**
      * Remove o item especificado liberando todos os seus slots matriciais.
      */

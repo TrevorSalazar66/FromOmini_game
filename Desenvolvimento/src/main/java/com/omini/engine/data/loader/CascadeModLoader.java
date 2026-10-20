@@ -2,6 +2,7 @@ package com.omini.engine.data.loader;
 
 import com.omini.engine.data.repositories.JsonAnatomyRepository;
 import com.omini.engine.data.repositories.JsonDamageTypeRepository;
+import com.omini.engine.data.repositories.JsonEnvironmentalReactionRepository;
 import com.omini.engine.data.repositories.JsonItemRepository;
 import com.omini.engine.data.repositories.JsonMaterialRepository;
 
@@ -22,12 +23,14 @@ public final class CascadeModLoader {
     private final JsonDamageTypeRepository damageTypeRepository;
     private final JsonItemRepository itemRepository;
     private final JsonAnatomyRepository anatomyRepository;
+    private final JsonEnvironmentalReactionRepository environmentalReactionRepository;
 
     public CascadeModLoader(
         JsonMaterialRepository materialRepository,
         JsonDamageTypeRepository damageTypeRepository,
         JsonItemRepository itemRepository,
-        JsonAnatomyRepository anatomyRepository
+        JsonAnatomyRepository anatomyRepository,
+        JsonEnvironmentalReactionRepository environmentalReactionRepository
     ) {
         if (materialRepository == null || damageTypeRepository == null) {
             throw new IllegalArgumentException("Os repositórios de materiais e tipos de dano não podem ser nulos.");
@@ -36,6 +39,16 @@ public final class CascadeModLoader {
         this.damageTypeRepository = damageTypeRepository;
         this.itemRepository = itemRepository;
         this.anatomyRepository = anatomyRepository;
+        this.environmentalReactionRepository = environmentalReactionRepository;
+    }
+
+    public CascadeModLoader(
+        JsonMaterialRepository materialRepository,
+        JsonDamageTypeRepository damageTypeRepository,
+        JsonItemRepository itemRepository,
+        JsonAnatomyRepository anatomyRepository
+    ) {
+        this(materialRepository, damageTypeRepository, itemRepository, anatomyRepository, null);
     }
 
     public CascadeModLoader(
@@ -43,14 +56,61 @@ public final class CascadeModLoader {
         JsonDamageTypeRepository damageTypeRepository,
         JsonItemRepository itemRepository
     ) {
-        this(materialRepository, damageTypeRepository, itemRepository, null);
+        this(materialRepository, damageTypeRepository, itemRepository, null, null);
     }
 
     public CascadeModLoader(
         JsonMaterialRepository materialRepository,
         JsonDamageTypeRepository damageTypeRepository
     ) {
-        this(materialRepository, damageTypeRepository, null, null);
+        this(materialRepository, damageTypeRepository, null, null, null);
+    }
+
+    public CascadeModLoader() {
+        this(
+            new JsonMaterialRepository(),
+            new JsonDamageTypeRepository(),
+            new JsonItemRepository(),
+            new JsonAnatomyRepository(),
+            new JsonEnvironmentalReactionRepository()
+        );
+    }
+
+    public JsonMaterialRepository getMaterialRepository() {
+        return materialRepository;
+    }
+
+    public JsonDamageTypeRepository getDamageTypeRepository() {
+        return damageTypeRepository;
+    }
+
+    public JsonItemRepository getItemRepository() {
+        return itemRepository;
+    }
+
+    public JsonAnatomyRepository getAnatomyRepository() {
+        return anatomyRepository;
+    }
+
+    public JsonEnvironmentalReactionRepository getEnvironmentalReactionRepository() {
+        return environmentalReactionRepository;
+    }
+
+    public JsonEnvironmentalReactionRepository getReactionRepository() {
+        return environmentalReactionRepository;
+    }
+
+    public void carregarTodosOsMods(java.io.File diretorioRaizJogo) {
+        if (diretorioRaizJogo == null) return;
+        carregarTodosOsMods(diretorioRaizJogo.toPath());
+    }
+
+    public void carregarTodosOsMods(Path diretorioRaizJogo) {
+        try {
+            carregar(diretorioRaizJogo, java.util.Collections.emptyList());
+        } catch (IOException e) {
+            throw new RuntimeException("Erro ao carregar mods do diretório: " + diretorioRaizJogo, e);
+        }
     }
 
     /**
@@ -107,6 +167,13 @@ public final class CascadeModLoader {
             Path anatomyPath = dataPath.resolve("anatomy.json");
             if (Files.exists(anatomyPath)) {
                 anatomyRepository.carregarDeArquivo(anatomyPath);
+            }
+        }
+
+        if (environmentalReactionRepository != null) {
+            Path reactionsPath = dataPath.resolve("environmental_reactions.json");
+            if (Files.exists(reactionsPath)) {
+                environmentalReactionRepository.carregarDeArquivo(reactionsPath);
             }
         }
     }

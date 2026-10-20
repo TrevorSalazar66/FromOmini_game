@@ -43,6 +43,17 @@ public final class BodyPartStateVO {
         this.imobilizadoComTala = imobilizadoComTala;
     }
 
+    public BodyPartStateVO(String partId,
+                           String name,
+                           double hpAtual,
+                           double hpMaximo,
+                           boolean vital,
+                           boolean fraturado,
+                           boolean imobilizadoComTala,
+                           double sangramentoPorTurno) {
+        this(partId, name, hpAtual, hpMaximo, vital, fraturado, sangramentoPorTurno, false, imobilizadoComTala);
+    }
+
     public static BodyPartStateVO criarSaudavel(String partId, String name, double hpMaximo, boolean vital) {
         return new BodyPartStateVO(partId, name, hpMaximo, hpMaximo, vital, false, 0.0, false, false);
     }

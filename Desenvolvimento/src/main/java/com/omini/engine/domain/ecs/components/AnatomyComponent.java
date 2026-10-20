@@ -23,12 +23,28 @@ public final class AnatomyComponent implements Component {
         if (baseMaxHp <= 0.0) {
             throw new IllegalArgumentException("O HP base deve ser positivo. Recebido: " + baseMaxHp);
         }
-        if (partes == null || partes.isEmpty()) {
-            throw new IllegalArgumentException("O componente de anatomia deve possuir ao menos uma parte.");
-        }
         this.anatomyId = anatomyId.trim();
         this.baseMaxHp = baseMaxHp;
-        this.partes = new LinkedHashMap<>(partes);
+        this.partes = new LinkedHashMap<>(partes != null ? partes : Collections.emptyMap());
+    }
+
+    public AnatomyComponent(String anatomyId, double baseMaxHp) {
+        this(anatomyId, baseMaxHp, new LinkedHashMap<>());
+    }
+
+    public AnatomyComponent() {
+        this("humanoid", 100.0, new LinkedHashMap<>());
+    }
+
+    public void adicionarParte(BodyPartStateVO parte) {
+        if (parte != null) {
+            this.partes.put(parte.getPartId().toLowerCase(), parte);
+        }
+    }
+
+    public Optional<BodyPartStateVO> removerParte(String partId) {
+        if (partId == null) return Optional.empty();
+        return Optional.ofNullable(this.partes.remove(partId.trim().toLowerCase()));
     }
 
     public static AnatomyComponent aPartirDeDefinicao(AnatomyDefinitionModel def, double baseMaxHp) {

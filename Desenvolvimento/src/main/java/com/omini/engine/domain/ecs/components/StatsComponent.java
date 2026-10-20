@@ -24,6 +24,10 @@ public final class StatsComponent implements Component {
         this.inteligencia = inteligencia;
     }
 
+    public StatsComponent(int forca, int destreza, int constituicao, int percepcao) {
+        this(forca, destreza, constituicao, percepcao, 10);
+    }
+
     public StatsComponent() {
         this(10, 10, 10, 10, 10);
     }
