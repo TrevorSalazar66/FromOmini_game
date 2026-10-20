@@ -1,0 +1,57 @@
+{
+  "items": {
+    "tocha_madeira": {
+      "id": "tocha_madeira",
+      "name": "Tocha de Madeira",
+      "description": "Bastão de madeira resinosa com ponta enrolada em estopa inflamável.",
+      "category": "tool",
+      "width_slots": 1,
+      "height_slots": 2,
+      "material_id": "wood_soft",
+      "can_rotate": true,
+      "properties": {
+        "light_radius": 5,
+        "fuel_turns": 300
+      }
+    },
+    "cantil_ferro": {
+      "id": "cantil_ferro",
+      "name": "Cantil de Ferro",
+      "description": "Recipiente estanque para transporte seguro de água potável.",
+      "category": "tool",
+      "width_slots": 1,
+      "height_slots": 1,
+      "material_id": "iron",
+      "can_rotate": false,
+      "properties": {
+        "liquid_capacity_ml": 1000
+      }
+    },
+    "kit_gazua": {
+      "id": "kit_gazua",
+      "name": "Kit de Gazua Fina",
+      "description": "Hastes flexíveis de ferro para manipulação mecânica de fechaduras.",
+      "category": "tool",
+      "width_slots": 1,
+      "height_slots": 1,
+      "material_id": "iron",
+      "can_rotate": false,
+      "properties": {
+        "lockpick_bonus": 15
+      }
+    },
+    "corda_fibras": {
+      "id": "corda_fibras",
+      "name": "Corda de Fibras Trançadas",
+      "description": "Dez metros de corda resistente para escalada e contenção.",
+      "category": "tool",
+      "width_slots": 1,
+      "height_slots": 2,
+      "material_id": "cloth",
+      "can_rotate": true,
+      "properties": {
+        "rope_length_m": 10
+      }
+    }
+  }
+}

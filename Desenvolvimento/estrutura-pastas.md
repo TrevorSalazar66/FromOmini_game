@@ -34,7 +34,11 @@ Desenvolvimento/
 │       ├── damage_types.json           # Tipos de dano e multiplicadores contra tags
 │       ├── anatomy.json                # Mapeamento anatômico de membros e área de superfície
 │       ├── environmental_reactions.json# Regras de alquimia ambiental e campos reativos
-│       ├── items/                      # JSONs de armas, armaduras, ferramentas e consumíveis
+│       ├── items/                      # JSONs de armas, armaduras, ferramentas e recipientes
+│       │   ├── weapons.json            # Armas de combate e mineração
+│       │   ├── armor.json              # Armaduras corporais, elmos e calçados
+│       │   ├── tools.json              # Tochas, cantis, gazuas e cordas
+│       │   └── containers.json         # Mochilas, bolsas e recipientes com grade interna
 │       ├── entities/                   # JSONs de monstros, NPCs e facções
 │       └── mapgen/                     # Presets de salas e regras procedurais de biomas
 │
@@ -47,10 +51,15 @@ Desenvolvimento/
     │   │               ├── core/        # Loop do jogo, relógio e barramento de eventos
     │   │               ├── domain/      # Camada 3: Regras de negócio puras (Clean Architecture)
     │   │               │   ├── usecases/# Casos de uso (estritamente 1 ação por arquivo)
-    │   │               │   ├── models/  # Entidades de domínio e componentes ECS
-    │   │               │   └── dtos/    # Objetos de transferência de dados e Vo's imutáveis
+    │   │               │   ├── models/  # Entidades de domínio imutáveis (Material, Item, DamageType)
+    │   │               │   ├── dtos/    # Objetos de transferência de dados e VOs imutáveis
+    │   │               │   ├── repositories/ # Contratos de repositórios (IMaterialRepository, etc.)
+    │   │               │   ├── factories/    # Fábricas de instâncias de entidades ECS
+    │   │               │   └── ecs/     # Arquitetura Entity-Component-System
+    │   │               │       └── components/ # Componentes puros (Grid, Item, Material, Position, etc.)
     │   │               ├── controllers/ # Camada 2: Orquestração de turnos, inputs e telas
     │   │               ├── data/        # Camada 4: Repositórios concretos e adaptadores JSON
+    │   │               │   ├── json/    # Parser nativo SimpleJsonParser
     │   │               │   ├── repositories/ # Implementação concreta de leitura JSON
     │   │               │   └── loader/  # CascadeModLoader e gerenciador do Scoped Storage
     │   │               └── ui/          # Camada 1: Componentes gráficos touch-first e HUD
@@ -88,7 +97,8 @@ Desenvolvimento/
 ### 4. `Desenvolvimento/src/main/java/.../domain/`
 - **Finalidade:** O coração das regras de negócio do jogo.
 - **Regra de Ouro:** Não importa bibliotecas de UI, gráficos ou Android. É Java puro e determinístico.
-- **`usecases/`:** Cada caso de uso é uma classe com uma única função pública executável (ex.: `CalcularMassaProceduralUseCase.java`). Proibido acumular múltiplos casos de uso em um único arquivo.
+- **`usecases/`:** Cada caso de uso é uma classe com uma única função pública executável (ex.: `InserirItemGradeUseCase.java`, `CalcularSobrecargaUseCase.java`). Proibido acumular múltiplos casos de uso em um único arquivo.
+- **`ecs/`:** Implementação pura de Entity-Component-System com entidades identificadas e componentes como estruturas de dados puras.
 
 ### 5. `Desenvolvimento/src/main/java/.../data/`
 - **Finalidade:** Responsável por carregar, parsear e persistir os arquivos JSON.
@@ -100,6 +110,6 @@ Desenvolvimento/
 - **Restrição:** Componentes de UI não executam cálculos de negócio; eles apenas emitem eventos para os `controllers` e renderizam dados recebidos.
 
 ### 7. `Desenvolvimento/src/test/`
-- **`unit/` (Camada 1):** Valida a matemática de range, pesos probabilísticos, graus de sucesso e massa procedural.
-- **`integration/` (Camada 2):** Valida a comunicação entre o `CascadeModLoader`, repositórios JSON e os UseCases.
+- **`unit/` (Camada 1):** Valida a matemática de range, pesos probabilísticos, graus de sucesso, colisão e limites do inventário em grade, sobrecarga e ECS.
+- **`integration/` (Camada 2):** Valida a comunicação entre o `CascadeModLoader`, repositórios JSON, fábricas de entidades e os UseCases de inventário.
 - **`regression/` (Camada 3):** Valida a estabilidade do sistema como um todo antes de cada grande deploy ou release de fase.

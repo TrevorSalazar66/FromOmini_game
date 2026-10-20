@@ -1,6 +1,7 @@
 package com.omini.engine.data.loader;
 
 import com.omini.engine.data.repositories.JsonDamageTypeRepository;
+import com.omini.engine.data.repositories.JsonItemRepository;
 import com.omini.engine.data.repositories.JsonMaterialRepository;
 
 import java.io.IOException;
@@ -18,16 +19,26 @@ public final class CascadeModLoader {
 
     private final JsonMaterialRepository materialRepository;
     private final JsonDamageTypeRepository damageTypeRepository;
+    private final JsonItemRepository itemRepository;
+
+    public CascadeModLoader(
+        JsonMaterialRepository materialRepository,
+        JsonDamageTypeRepository damageTypeRepository,
+        JsonItemRepository itemRepository
+    ) {
+        if (materialRepository == null || damageTypeRepository == null) {
+            throw new IllegalArgumentException("Os repositórios de materiais e tipos de dano não podem ser nulos.");
+        }
+        this.materialRepository = materialRepository;
+        this.damageTypeRepository = damageTypeRepository;
+        this.itemRepository = itemRepository;
+    }
 
     public CascadeModLoader(
         JsonMaterialRepository materialRepository,
         JsonDamageTypeRepository damageTypeRepository
     ) {
-        if (materialRepository == null || damageTypeRepository == null) {
-            throw new IllegalArgumentException("Os repositórios não podem ser nulos.");
-        }
-        this.materialRepository = materialRepository;
-        this.damageTypeRepository = damageTypeRepository;
+        this(materialRepository, damageTypeRepository, null);
     }
 
     /**
@@ -67,6 +78,17 @@ public final class CascadeModLoader {
         Path damageTypesPath = dataPath.resolve("damage_types.json");
         if (Files.exists(damageTypesPath)) {
             damageTypeRepository.carregarDeArquivo(damageTypesPath);
+        }
+
+        if (itemRepository != null) {
+            Path itemsDir = dataPath.resolve("items");
+            if (Files.exists(itemsDir) && Files.isDirectory(itemsDir)) {
+                itemRepository.carregarDeDiretorio(itemsDir);
+            }
+            Path itemsSingleFile = dataPath.resolve("items.json");
+            if (Files.exists(itemsSingleFile)) {
+                itemRepository.carregarDeArquivo(itemsSingleFile);
+            }
         }
     }
 }

@@ -1,0 +1,94 @@
+{
+  "items": {
+    "espada_curta_ferro": {
+      "id": "espada_curta_ferro",
+      "name": "Espada Curta de Ferro",
+      "description": "Lâmina afiada forjada em ferro fundido, ideal para combate aproximado.",
+      "category": "weapon",
+      "width_slots": 1,
+      "height_slots": 3,
+      "material_id": "iron",
+      "can_rotate": true,
+      "equip_slot": "MAO_PRINCIPAL",
+      "properties": {
+        "damage_type": "slash",
+        "base_damage": 14.0
+      }
+    },
+    "adaga_ferro": {
+      "id": "adaga_ferro",
+      "name": "Adaga de Ferro",
+      "description": "Pequena lâmina perfurante de saque rápido.",
+      "category": "weapon",
+      "width_slots": 1,
+      "height_slots": 2,
+      "material_id": "iron",
+      "can_rotate": true,
+      "equip_slot": "MAO_PRINCIPAL",
+      "properties": {
+        "damage_type": "pierce",
+        "base_damage": 8.0
+      }
+    },
+    "martelo_guerra_chumbo": {
+      "id": "martelo_guerra_chumbo",
+      "name": "Martelo de Guerra de Chumbo",
+      "description": "Arma colossal e extremamente pesada, capaz de esmagar armaduras rígidas.",
+      "category": "weapon",
+      "width_slots": 2,
+      "height_slots": 3,
+      "material_id": "lead",
+      "can_rotate": true,
+      "equip_slot": "DUAS_MAOS",
+      "properties": {
+        "damage_type": "blunt",
+        "base_damage": 26.0
+      }
+    },
+    "machado_lenhador": {
+      "id": "machado_lenhador",
+      "name": "Machado de Lenhador",
+      "description": "Ferramenta pesada com cabeça de ferro e cabo reforçado.",
+      "category": "weapon",
+      "width_slots": 2,
+      "height_slots": 3,
+      "material_id": "iron",
+      "can_rotate": true,
+      "equip_slot": "DUAS_MAOS",
+      "properties": {
+        "damage_type": "slash",
+        "base_damage": 18.0
+      }
+    },
+    "picareta_mineracao": {
+      "id": "picareta_mineracao",
+      "name": "Picareta de Mineração",
+      "description": "Ponta de ferro endurecido especializada em fraturar veios rochosos de granito.",
+      "category": "weapon",
+      "width_slots": 2,
+      "height_slots": 2,
+      "material_id": "iron",
+      "can_rotate": true,
+      "equip_slot": "MAO_PRINCIPAL",
+      "properties": {
+        "damage_type": "mining_pickaxe",
+        "base_damage": 12.0
+      }
+    },
+    "clava_madeira": {
+      "id": "clava_madeira",
+      "name": "Clava de Madeira Maciça",
+      "description": "Bastão rústico entalhado em cerne vegetal compacto.",
+      "category": "weapon",
+      "width_slots": 1,
+      "height_slots": 3,
+      "material_id": "wood_hard",
+      "can_rotate": true,
+      "equip_slot": "MAO_PRINCIPAL",
+      "properties": {
+        "damage_type": "blunt",
+        "base_damage": 10.0
+      }
+    }
+  }
+}

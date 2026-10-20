@@ -1,0 +1,74 @@
+{
+  "items": {
+    "tunica_tecido": {
+      "id": "tunica_tecido",
+      "name": "Túnica de Tecido",
+      "description": "Vestimenta leve costurada em fibras vegetais entrelaçadas.",
+      "category": "armor",
+      "width_slots": 2,
+      "height_slots": 2,
+      "material_id": "cloth",
+      "can_rotate": true,
+      "equip_slot": "TORSO",
+      "properties": {
+        "armor_value": 2.0
+      }
+    },
+    "peitoral_ferro": {
+      "id": "peitoral_ferro",
+      "name": "Peitoral de Ferro",
+      "description": "Placa sólida de ferro fundido moldada para proteger o tórax e abdômen.",
+      "category": "armor",
+      "width_slots": 2,
+      "height_slots": 3,
+      "material_id": "iron",
+      "can_rotate": true,
+      "equip_slot": "TORSO",
+      "properties": {
+        "armor_value": 18.0
+      }
+    },
+    "elmo_ferro": {
+      "id": "elmo_ferro",
+      "name": "Elmo de Ferro",
+      "description": "Proteção craniana com viseira estreita.",
+      "category": "armor",
+      "width_slots": 2,
+      "height_slots": 2,
+      "material_id": "iron",
+      "can_rotate": true,
+      "equip_slot": "CABECA",
+      "properties": {
+        "armor_value": 12.0
+      }
+    },
+    "botas_reforcadas": {
+      "id": "botas_reforcadas",
+      "name": "Botas Reforçadas de Ferro",
+      "description": "Calçados pesados com biqueira metálica para terrenos hostis.",
+      "category": "armor",
+      "width_slots": 2,
+      "height_slots": 2,
+      "material_id": "iron",
+      "can_rotate": true,
+      "equip_slot": "PES",
+      "properties": {
+        "armor_value": 8.0
+      }
+    },
+    "luvas_tecido": {
+      "id": "luvas_tecido",
+      "name": "Luvas Simples de Tecido",
+      "description": "Proteção básica para as mãos contra atrito.",
+      "category": "armor",
+      "width_slots": 1,
+      "height_slots": 1,
+      "material_id": "cloth",
+      "can_rotate": false,
+      "equip_slot": "BRACOS",
+      "properties": {
+        "armor_value": 1.0
+      }
+    }
+  }
+}

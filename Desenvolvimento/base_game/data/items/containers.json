@@ -1,0 +1,49 @@
+{
+  "items": {
+    "bolsa_cintura": {
+      "id": "bolsa_cintura",
+      "name": "Bolsa de Cintura",
+      "description": "Algibeira de tecido compacta que se prende ao cinto.",
+      "category": "container",
+      "width_slots": 2,
+      "height_slots": 2,
+      "material_id": "cloth",
+      "can_rotate": true,
+      "equip_slot": "CINTO",
+      "properties": {
+        "grid_width": 3,
+        "grid_height": 3
+      }
+    },
+    "mochila_pequena": {
+      "id": "mochila_pequena",
+      "name": "Mochila Pequena de Tecido",
+      "description": "Bolsa dorsal leve para suprimentos imediatos.",
+      "category": "container",
+      "width_slots": 2,
+      "height_slots": 3,
+      "material_id": "cloth",
+      "can_rotate": true,
+      "equip_slot": "COSTAS",
+      "properties": {
+        "grid_width": 4,
+        "grid_height": 5
+      }
+    },
+    "mochila_tatica": {
+      "id": "mochila_tatica",
+      "name": "Mochila Tática Reforçada",
+      "description": "Mochila militar com múltiplos compartimentos e tiras de compressão.",
+      "category": "container",
+      "width_slots": 2,
+      "height_slots": 4,
+      "material_id": "cloth",
+      "can_rotate": true,
+      "equip_slot": "COSTAS",
+      "properties": {
+        "grid_width": 6,
+        "grid_height": 8
+      }
+    }
+  }
+}
