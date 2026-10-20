@@ -1,0 +1,71 @@
+{
+  "damage_types": {
+    "slash": {
+      "id": "slash",
+      "name": "Corte",
+      "visual_fx": "fx_slash_blood",
+      "tag_modifiers": {
+        "organic": 1.3,
+        "armored": 0.5,
+        "undead": 1.0
+      }
+    },
+    "blunt": {
+      "id": "blunt",
+      "name": "Contusão / Impacto",
+      "visual_fx": "fx_blunt_hit",
+      "tag_modifiers": {
+        "skeleton": 2.0,
+        "armored": 1.1,
+        "organic": 1.0
+      }
+    },
+    "pierce": {
+      "id": "pierce",
+      "name": "Perfuração",
+      "visual_fx": "fx_pierce_hole",
+      "tag_modifiers": {
+        "organic": 1.4,
+        "skeleton": 0.4,
+        "armored": 0.7
+      }
+    },
+    "fire": {
+      "id": "fire",
+      "name": "Fogo / Térmico",
+      "visual_fx": "fx_flame_burst",
+      "tag_modifiers": {
+        "flammable": 2.5,
+        "aquatic": 0.3
+      }
+    },
+    "electric": {
+      "id": "electric",
+      "name": "Eletricidade",
+      "visual_fx": "fx_electric_spark",
+      "tag_modifiers": {
+        "metallic": 2.0,
+        "water_wet": 2.5
+      }
+    },
+    "mining_pickaxe": {
+      "id": "mining_pickaxe",
+      "name": "Mineração / Escavação",
+      "visual_fx": "fx_rock_debris",
+      "tag_modifiers": {
+        "mineral": 2.5,
+        "masonry": 2.0
+      }
+    },
+    "holy": {
+      "id": "holy",
+      "name": "Sagrado / Celestial",
+      "visual_fx": "fx_holy_light",
+      "tag_modifiers": {
+        "demonic": 2.5,
+        "undead": 2.0,
+        "celestial": -1.0
+      }
+    }
+  }
+}

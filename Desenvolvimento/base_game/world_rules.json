@@ -1,0 +1,23 @@
+{
+  "attribute_scaling": {
+    "min_multiplier": 1,
+    "max_multiplier": 10
+  },
+  "dice_testing": {
+    "decaying_ramp_start_weight": 100,
+    "decaying_ramp_end_weight": 1,
+    "max_skill_level": 70
+  },
+  "success_thresholds": {
+    "critical_failure_limit": -0.50,
+    "failure_limit": -0.15,
+    "partial_success_limit": 0.00,
+    "total_success_limit": 0.20
+  },
+  "simulation_toggles": {
+    "complex_thermodynamics": true,
+    "complex_electricity": true,
+    "nutritional_vitamins": false,
+    "advanced_encumbrance": true
+  }
+}

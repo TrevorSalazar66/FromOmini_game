@@ -1,0 +1,122 @@
+{
+  "anatomies": {
+    "humanoid_standard": {
+      "id": "humanoid_standard",
+      "name": "Humanoide Padrão",
+      "body_parts": {
+        "head": {
+          "id": "head",
+          "name": "Cabeça",
+          "hit_weight": 10,
+          "vital": true,
+          "base_hp_ratio": 0.75,
+          "armor_slot": "head"
+        },
+        "torso": {
+          "id": "torso",
+          "name": "Tronco",
+          "hit_weight": 40,
+          "vital": true,
+          "base_hp_ratio": 1.0,
+          "armor_slot": "torso"
+        },
+        "upper_arm_l": {
+          "id": "upper_arm_l",
+          "name": "Braço Sup. Esquerdo",
+          "hit_weight": 6,
+          "vital": false,
+          "base_hp_ratio": 0.45,
+          "armor_slot": "arms"
+        },
+        "upper_arm_r": {
+          "id": "upper_arm_r",
+          "name": "Braço Sup. Direito",
+          "hit_weight": 6,
+          "vital": false,
+          "base_hp_ratio": 0.45,
+          "armor_slot": "arms"
+        },
+        "forearm_l": {
+          "id": "forearm_l",
+          "name": "Antebraço Esquerdo",
+          "hit_weight": 4,
+          "vital": false,
+          "base_hp_ratio": 0.35,
+          "armor_slot": "arms"
+        },
+        "forearm_r": {
+          "id": "forearm_r",
+          "name": "Antebraço Direito",
+          "hit_weight": 4,
+          "vital": false,
+          "base_hp_ratio": 0.35,
+          "armor_slot": "arms"
+        },
+        "hand_l": {
+          "id": "hand_l",
+          "name": "Mão Esquerda",
+          "hit_weight": 2,
+          "vital": false,
+          "base_hp_ratio": 0.20,
+          "armor_slot": "hands"
+        },
+        "hand_r": {
+          "id": "hand_r",
+          "name": "Mão Direita",
+          "hit_weight": 2,
+          "vital": false,
+          "base_hp_ratio": 0.20,
+          "armor_slot": "hands"
+        },
+        "thigh_l": {
+          "id": "thigh_l",
+          "name": "Coxa Esquerda",
+          "hit_weight": 9,
+          "vital": false,
+          "base_hp_ratio": 0.60,
+          "armor_slot": "legs"
+        },
+        "thigh_r": {
+          "id": "thigh_r",
+          "name": "Coxa Direita",
+          "hit_weight": 9,
+          "vital": false,
+          "base_hp_ratio": 0.60,
+          "armor_slot": "legs"
+        },
+        "shin_l": {
+          "id": "shin_l",
+          "name": "Canela Esquerda",
+          "hit_weight": 5,
+          "vital": false,
+          "base_hp_ratio": 0.40,
+          "armor_slot": "legs"
+        },
+        "shin_r": {
+          "id": "shin_r",
+          "name": "Canela Direita",
+          "hit_weight": 5,
+          "vital": false,
+          "base_hp_ratio": 0.40,
+          "armor_slot": "legs"
+        },
+        "foot_l": {
+          "id": "foot_l",
+          "name": "Pé Esquerdo",
+          "hit_weight": 2,
+          "vital": false,
+          "base_hp_ratio": 0.25,
+          "armor_slot": "feet"
+        },
+        "foot_r": {
+          "id": "foot_r",
+          "name": "Pé Direito",
+          "hit_weight": 2,
+          "vital": false,
+          "base_hp_ratio": 0.25,
+          "armor_slot": "feet"
+        }
+      }
+    }
+  }
+}

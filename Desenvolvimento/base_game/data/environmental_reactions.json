@@ -1,0 +1,26 @@
+{
+  "reactions": [
+    {
+      "trigger_tags": ["surface_fire", "surface_water"],
+      "action": "extinguish_and_spawn",
+      "spawn_entity": "field_smoke",
+      "spawn_radius": 2,
+      "duration_turns": 6,
+      "description": "A água apaga o fogo e gera uma nuvem densa de vapor e fumaça que bloqueia a visão."
+    },
+    {
+      "trigger_tags": ["surface_fire", "flammable_gas"],
+      "action": "detonate",
+      "explosion_power": 60,
+      "sound_volume": 100,
+      "description": "O contato de faísca ou fogo com gás inflamável causa uma explosão imediata em área."
+    },
+    {
+      "trigger_tags": ["surface_electric", "surface_water"],
+      "action": "electrify_pool",
+      "damage_per_turn": 25,
+      "spread_radius": 3,
+      "description": "A corrente elétrica eletrifica toda a poça d'água adjacente causando choque contínuo."
+    }
+  ]
+}

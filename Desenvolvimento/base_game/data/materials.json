@@ -1,0 +1,130 @@
+{
+  "materials": {
+    "wood_soft": {
+      "id": "wood_soft",
+      "name": "Madeira Macia",
+      "density_multiplier": 1.2,
+      "base_hardness": 8,
+      "flammable": true,
+      "damage_modifiers": {
+        "slash": 1.2,
+        "blunt": 1.0,
+        "pierce": 0.8,
+        "fire": 3.0,
+        "mining_pickaxe": 0.4
+      }
+    },
+    "wood_hard": {
+      "id": "wood_hard",
+      "name": "Madeira Maciça",
+      "density_multiplier": 2.0,
+      "base_hardness": 15,
+      "flammable": true,
+      "damage_modifiers": {
+        "slash": 0.8,
+        "blunt": 1.0,
+        "pierce": 0.5,
+        "fire": 2.5,
+        "mining_pickaxe": 0.3
+      }
+    },
+    "stone_granite": {
+      "id": "stone_granite",
+      "name": "Granito",
+      "density_multiplier": 5.0,
+      "base_hardness": 45,
+      "flammable": false,
+      "damage_modifiers": {
+        "slash": 0.05,
+        "blunt": 0.6,
+        "pierce": 0.1,
+        "fire": 0.0,
+        "mining_pickaxe": 2.0
+      }
+    },
+    "iron": {
+      "id": "iron",
+      "name": "Ferro Fundido",
+      "density_multiplier": 7.8,
+      "base_hardness": 60,
+      "flammable": false,
+      "damage_modifiers": {
+        "slash": 0.2,
+        "blunt": 0.7,
+        "pierce": 0.3,
+        "fire": 0.0,
+        "mining_pickaxe": 1.5
+      }
+    },
+    "lead": {
+      "id": "lead",
+      "name": "Chumbo Pesado",
+      "density_multiplier": 11.3,
+      "base_hardness": 30,
+      "flammable": false,
+      "damage_modifiers": {
+        "slash": 0.5,
+        "blunt": 0.8,
+        "pierce": 0.4,
+        "fire": 0.0,
+        "mining_pickaxe": 1.2
+      }
+    },
+    "gold": {
+      "id": "gold",
+      "name": "Ouro Puro",
+      "density_multiplier": 19.3,
+      "base_hardness": 25,
+      "flammable": false,
+      "damage_modifiers": {
+        "slash": 0.9,
+        "blunt": 1.1,
+        "pierce": 0.8,
+        "fire": 0.0,
+        "mining_pickaxe": 1.0
+      }
+    },
+    "cloth": {
+      "id": "cloth",
+      "name": "Tecido e Fibras",
+      "density_multiplier": 0.3,
+      "base_hardness": 2,
+      "flammable": true,
+      "damage_modifiers": {
+        "slash": 2.0,
+        "blunt": 0.3,
+        "pierce": 1.5,
+        "fire": 4.0,
+        "mining_pickaxe": 0.1
+      }
+    },
+    "feathers": {
+      "id": "feathers",
+      "name": "Penas Macias",
+      "density_multiplier": 0.1,
+      "base_hardness": 1,
+      "flammable": true,
+      "damage_modifiers": {
+        "slash": 1.0,
+        "blunt": 0.1,
+        "pierce": 0.5,
+        "fire": 5.0,
+        "mining_pickaxe": 0.05
+      }
+    },
+    "flesh": {
+      "id": "flesh",
+      "name": "Carne Orgânica",
+      "density_multiplier": 1.0,
+      "base_hardness": 5,
+      "flammable": true,
+      "damage_modifiers": {
+        "slash": 1.5,
+        "blunt": 1.2,
+        "pierce": 1.4,
+        "fire": 2.0,
+        "mining_pickaxe": 0.8
+      }
+    }
+  }
+}
