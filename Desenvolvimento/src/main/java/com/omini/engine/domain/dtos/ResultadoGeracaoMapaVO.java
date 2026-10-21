@@ -24,11 +24,27 @@ public final class ResultadoGeracaoMapaVO {
         return mapa;
     }
 
+    public TileMap mapa() {
+        return mapa;
+    }
+
     public CoordenadaVO getPontoInicial() {
         return pontoInicial;
     }
 
+    public CoordenadaVO pontoInicial() {
+        return pontoInicial;
+    }
+
+    public CoordenadaVO pontoSpawn() {
+        return pontoInicial;
+    }
+
     public List<CoordenadaVO> getCentrosSalas() {
+        return centrosSalas;
+    }
+
+    public List<CoordenadaVO> centrosSalas() {
         return centrosSalas;
     }
 }

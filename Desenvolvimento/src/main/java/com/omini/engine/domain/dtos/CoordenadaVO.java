@@ -23,6 +23,14 @@ public final class CoordenadaVO {
         return y;
     }
 
+    public int x() {
+        return x;
+    }
+
+    public int y() {
+        return y;
+    }
+
     public int distanciaManhattan(CoordenadaVO outro) {
         if (outro == null) return Integer.MAX_VALUE;
         return Math.abs(this.x - outro.x) + Math.abs(this.y - outro.y);

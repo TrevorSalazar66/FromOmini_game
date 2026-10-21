@@ -1,69 +1,70 @@
-# Tarefas Ativas: Fase 4 (Grid Espacial, Alquimia Elemental & Turnos)
+# Tarefas Ativas: Fase 5 (Interface Mobile Touch-First, HUD Minimalista, Persistência & Game Loop)
 
-Este documento registra o checklist rigoroso de implementação da **Fase 4**, seguindo a ordem de dependência modular e o protocolo de testes em 3 camadas.
-
----
-
-## 📌 Subfase 4.1: Modelo de Mapa de Tiles & Linha de Visão (Field of View)
-- [x] Implementar enum/modelo `TileTypeEnum` (CHAO_PEDRA, PAREDE_GRANITO, PORTA, AGUA_RASA, GRAMA) com custo de movimento, passabilidade e opacidade de visão.
-- [x] Implementar classe de domínio `TileMap` ($W \times H$) com matriz de tiles e suporte a busca espacial.
-- [x] Implementar `CalcularLinhaDeVisaoUseCase` (algoritmo determinístico de linha de visão com bloqueio por paredes e fumaça).
+Este documento registra o checklist de implementação da **Fase 5**, seguindo a ordem de dependência modular e o protocolo de testes em 3 camadas.
 
 ---
 
-## 📌 Subfase 4.2: Pathfinding A* (A-Star) com Custos Variáveis
-- [x] Implementar `CoordenadaVO` (x, y) e utilitários de distância Manhattan, Euclidiana e Chebyshev.
-- [x] Implementar `NavegarPathfindingAStarUseCase`:
-  - [x] Fila de prioridade com custo acumulado $g(n)$ e heurística $h(n)$.
-  - [x] Respeito estrito a obstáculos intransponíveis e custos variáveis de terreno.
-  - [x] Prevenção de corte de quinas em paredes adjacentes.
-  - [x] Retorno da lista ordenada de passos até o destino ou lista vazia se inalcançável.
+## 📌 Subfase 5.1: Camada de Apresentação, Viewport e Renderizador 2D
+- [x] Implementar `ViewportCamera` com cálculo de projeção ortográfica, zoom, centralização em entidades e conversão mundo $\leftrightarrow$ tela.
+- [x] Implementar `MapView` desacoplado gerenciando renderização em camadas:
+  - [x] Camada de terreno (tiles transitáveis, paredes, água).
+  - [x] Camada de neblina de guerra (*FOV* e tiles explorados).
+  - [x] Camada de superfícies reativas e alquimia (fogo, fumaça, poças).
+  - [x] Camada de entidades e itens caídos no chão.
 
 ---
 
-## 📌 Subfase 4.3: Superfícies Reativas & Alquimia Elemental
-- [x] Implementar modelo `EnvironmentalReactionModel` e contrato `IEnvironmentalReactionRepository`.
-- [x] Implementar `JsonEnvironmentalReactionRepository` carregando `environmental_reactions.json`.
-- [x] Atualizar `CascadeModLoader` para carregar reações ambientais.
-- [x] Implementar componente ECS `SurfaceFieldComponent` (tipo/tags do campo, intensidade, duração em turnos).
-- [x] Implementar `ProcessarReacaoAmbientalUseCase`:
-  - [x] Detecção de pares antagônicos (`surface_fire` + `surface_water` gerando `field_smoke`).
-  - [x] Detonação em área (`surface_fire` + `flammable_gas`).
-  - [x] Propagação de choque (`surface_electric` + `surface_water`).
+## 📌 Subfase 5.2: Menus Contextuais & Gestos Touch-First (Estilo SPD)
+- [x] Implementar modelo `AcaoContextualVO` (id, rótulo, ícone, habilitado, tipoAcao).
+- [x] Implementar `ContextMenuView` (Menu radial/ações de contexto avaliando componentes ECS da entidade tocada).
+- [x] Implementar `InteractionController`:
+  - [x] Toque em tile vazio: movimentação automática via `NavegarPathfindingAStarUseCase` consumindo AP.
+  - [x] Toque em entidade interativa: abertura de menu radial com ações contextuais (`[Abrir]`, `[Examinar]`, `[Atacar]`, `[Primeiros Socorros]`).
+- [x] Implementar `InventoryController`:
+  - [x] Operação de arrastar e soltar (drag-and-drop).
+  - [x] Gesto de rotação em 90 graus de itens compatíveis.
 
 ---
 
-## 📌 Subfase 4.4: Motor de Turnos e Pontos de Ação (AP) com Penalidades
-- [x] Implementar `TipoAcaoEnum` (MOVER, ATACAR, USAR_ITEM, RECARREGAR, ESPERAR) com custos base de AP.
-- [x] Implementar `CalcularCustoAcaoAPUseCase`:
-  - [x] Custo base da ação.
-  - [x] Modificador de sobrecarga corporal (obtido de `EstadoSobrecargaVO`).
-  - [x] Modificador de fraturas anatômicas (perna fraturada dobra custo de locomoção).
-  - [x] Modificador de atraso neural por dor aguda (> 20 de dor).
-- [x] Implementar `MotorTurnosAPUseCase`:
-  - [x] Acúmulo de energia por velocidade base ($DES \times 2 + 100$).
-  - [x] Consumo de AP por ação realizada e avanço do relógio global de ticks.
+## 📌 Subfase 5.3: Silhueta Anatômica & HUD Minimalista
+- [x] Implementar `AnatomyWidget`:
+  - [x] Renderização da silhueta segmentada em 14 membros corporais.
+  - [x] Código de cores dinâmico por nível de lesão: Verde (Íntegro) $\rightarrow$ Amarelo $\rightarrow$ Laranja $\rightarrow$ Vermelho $\rightarrow$ Cinza/Preto (Fraturado).
+  - [x] Indicadores visuais de ferida enfaixada e membro imobilizado com tala.
+  - [x] Painel rápido de primeiros socorros ao tocar em membro ferido.
+- [x] Implementar `HUDView`:
+  - [x] Medidor tático de AP disponível e custos projetados de ação.
+  - [x] Indicador visual de sobrecarga corporal (Verde/Confortável, Amarelo/Pesada, Vermelho/Incapacitado).
+  - [x] Barras de sobrevivência (Estamina, Fome, Sede) e Foco Mental reprimido por Dor.
+  - [x] Log de eventos de combate e ações em texto enxuto.
 
 ---
 
-## 📌 Subfase 4.5: Gerador Procedural de Mapas Baseado em Dados
-- [x] Implementar `ParametrosGeracaoMapaDTO` (largura, altura, maxSalas, tamanhoMinSala, tamanhoMaxSala, seed).
-- [x] Implementar `ResultadoGeracaoMapaVO` contendo mapa, spawn e lista de centros de salas.
-- [x] Implementar `GerarMapaProceduralUseCase`:
-  - [x] Posicionamento determinístico e não sobreposto de salas retangulares.
-  - [x] Abertura de corredores de ligação ortogonais conectando salas consecutivas.
-  - [x] Paredes perimetrais sólidas e piso interno transitável.
+## 📌 Subfase 5.4: Persistência Atômica de Partida & Configurações de Sandbox
+- [x] Implementar `SaveGameStateDTO` estruturando o snapshot completo do mundo (jogador, inventários, mapa explorado, relógio de turnos e regras).
+- [x] Implementar `JsonSaveGameRepository`:
+  - [x] Serialização do estado de jogo em formato JSON limpo e auditável.
+  - [x] Gravação atômica à prova de corrupção (salva em arquivo `.tmp` antes de sobrescrever o `.json` oficial).
+  - [x] Deserialização e restauração integral do ecossistema ECS, inventário em grade e mapa.
 
 ---
 
-## 📌 Subfase 4.6: Testes Automatizados (Camadas 1 e 2) & Documentação
+## 📌 Subfase 5.5: Loop de Jogo Central (GameLoopController)
+- [x] Implementar `GameLoopController`:
+  - [x] Orquestração do loop de turnos e iniciativa.
+  - [x] Consumo de AP por ação do jogador e avanço das entidades no mapa.
+  - [x] Acionamento automático de `ProcessarCicloTurnoFisiologicoUseCase` ao fim de cada rodada de tempo.
+  - [x] Avaliação de Game Over caso a condição de morte vital seja atingida.
+
+---
+
+## 📌 Subfase 5.6: Bateria de Testes em Camadas (1 e 2) & Documentação
 - [x] Implementar testes unitários (Camada 1):
-  - [x] `GridEPathfindingTest`: A* encontrando a rota mais curta, contornando paredes, bloqueio de visão por paredes e fumaça.
-  - [x] `AlquimiaElementalTest`: Alquimia de fogo e água gerando campo de fumaça, detonação com gás, eletrificação de poça.
-  - [x] `MotorTurnosAPTest`: Cálculo de AP considerando custos de perna fraturada (+100%), imobilização com tala (+40%) e peso excessivo.
-  - [x] `GeradorMapaProceduralTest`: Geração procedural de mapa com determinismo de seed, conectividade navegável e ausência de transbordo.
+  - [x] `ViewportCameraTest`: Conversão de coordenadas e enquadramento.
+  - [x] `ContextMenuViewTest`: Detecção de ações contextuais baseadas em componentes ECS.
+  - [x] `AnatomyWidgetTest`: Mapeamento correto de cores e estados clínicos por membro.
+  - [x] `JsonSaveGameRepositoryTest`: Salvamento atômico, integridade de dados e restauração.
+  - [x] `GameLoopControllerTest`: Ciclo de turnos, consumo de AP e condição de derrota.
 - [x] Implementar teste de integração (Camada 2):
-  - [x] `MapaTurnosAlquimiaIntegrationTest`: Carregamento de reações reais via `CascadeModLoader`, masmorra procedural, movimentação de sobrevivente, alquimia elemental gerando fumaça com bloqueio em tempo real de FOV e penalidade de fratura anatômica.
-- [x] Registrar histórico de ciclo em `Desenvolvimento/docs/historico-ciclos/ciclo-04-fase-4-grid-alquimia-e-turnos.md`.
-- [x] Commit na branch `fase-4`.
-- [x] Merge na `main` e criação do `README.md` abrangente na raiz.
+  - [x] `InterfaceMobileEGameStateIntegrationTest`: Sessão completa integrando masmorra procedural, interação touch, combate, curativos na silhueta, salvamento e carregamento sem perda de dados.
+- [x] Registrar histórico de ciclo em `Desenvolvimento/docs/historico-ciclos/ciclo-05-fase-5-interface-mobile-e-persistencia.md`.
